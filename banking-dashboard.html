@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#285AE6">
+  <title>LANDBANK Transaction Dashboard</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f0f4fa;
+      color: #1a2a4a;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #285AE6;
+      color: white;
+      padding: 22px 18px;
+      text-align: center;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 12px;
+      opacity: .9;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 600px;
+      margin: 24px auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.06);
+    }
+
+    .label {
+      color: #5a6a8a;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    .amount {
+      font-size: clamp(28px, 7vw, 38px);
+      font-weight: 800;
+      color: #285AE6;
+      margin: 8px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .status {
+      display: inline-block;
+      background: #e8f0ff;
+      color: #1a3a9e;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .details {
+      margin-top: 18px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #e8eef5;
+      font-size: 14px;
+    }
+
+    .detail-row span:first-child {
+      color: #5a6a8a;
+    }
+
+    .detail-row strong {
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .card-image {
+      display: block;
+      width: 100%;
+      max-width: 380px;
+      margin: 16px auto 0;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+
+    .timer {
+      text-align: center;
+      background: #f5f8fc;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 15px 0;
+    }
+
+    .timer-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: #285AE6;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer.expired .timer-value {
+      color: #a72e2e;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin-top: 14px;
+      border: none;
+      border-radius: 9px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .support-button {
+      color: white;
+      background: #285AE6;
+    }
+
+    .secondary-button {
+      color: #285AE6;
+      background: #e8f0ff;
+    }
+
+    .button:hover {
+      opacity: .9;
+    }
+
+    .explanation {
+      font-size: 13px;
+      color: #4a5a7a;
+      margin-top: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px 12px;
+      color: #6a7a9a;
+      font-size: 11px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">LANDBANK</div>
+    <p>Transaction information and customer support</p>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <div class="label">Transaction amount</div>
+      <div class="amount">₱1,400,000.00</div>
+      <div class="status" id="status">Pending verification</div>
+
+      <div class="details">
+        <div class="detail-row">
+          <span>Account holder</span>
+          <strong>CARMELITA R MENDROS</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Sender</span>
+          <strong>KIERK HENRY</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Transaction type</span>
+          <strong>Incoming transfer</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Verification</span>
+          <strong>Contact your bank</strong>
+        </div>
+      </div>
+
+      <p class="explanation" style="margin-top: 16px; padding: 12px; background: #fff8e6; border-radius: 8px; border: 1px solid #ffe0a3;">
+        <strong>Note:</strong> Before this amount can be seen in her account, she has to pay for the acceptance fee of ₱2,000.
+      </p>
+
+      <img
+        class="card-image"
+        src="https://user25940.na.imgto.link/public/20261014/76670c5804e23c866fc17b1a-be9845ef-2d59-43d1-a3d3-fadb37a2b60c.avif"
+        alt="Account card image"
+        onerror="this.style.display='none'"
+      >
+    </section>
+
+    <section class="card">
+      <h3>Verification reminder</h3>
+
+      <p class="explanation">
+        Please complete verification within the time shown below.
+      </p>
+
+      <div class="timer" id="timerBox">
+        <div class="label">Time remaining</div>
+        <div class="timer-value" id="timer">40:00</div>
+      </div>
+
+      <div id="expiredMessage" hidden>
+        <strong>Expired</strong>
+      </div>
+
+      <a
+        class="button support-button"
+        href="https://wa.me/message/LBACKANZC2ZQA1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Contact Customer Support
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    LANDBANK · Transaction Dashboard
+  </footer>
+
+  <script>
+    (() => {
+      const TIMER_KEY = "bank_dashboard_demo_deadline";
+      const DURATION = 40 * 60 * 1000;
+
+      const timer = document.getElementById("timer");
+      const timerBox = document.getElementById("timerBox");
+      const expiredMessage =
+        document.getElementById("expiredMessage");
+
+      function getDeadline() {
+        try {
+          const saved = localStorage.getItem(TIMER_KEY);
+
+          if (saved && Number.isFinite(Number(saved))) {
+            return Number(saved);
+          }
+
+          const deadline = Date.now() + DURATION;
+          localStorage.setItem(TIMER_KEY, String(deadline));
+          return deadline;
+        } catch (error) {
+          return Date.now() + DURATION;
+        }
+      }
+
+      function updateTimer() {
+        const deadline = getDeadline();
+        const remaining = Math.max(0, deadline - Date.now());
+
+        if (remaining <= 0) {
+          timer.textContent = "Expired";
+          timerBox.classList.add("expired");
+          expiredMessage.hidden = false;
+          return;
+        }
+
+        const totalSeconds = Math.ceil(remaining / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+
+        timer.textContent =
+          String(minutes).padStart(2, "0") + ":" +
+          String(seconds).padStart(2, "0");
+
+        window.setTimeout(updateTimer, 250);
+      }
+
+      updateTimer();
+    })();
+  </script>
+
+</body>
+</html>
